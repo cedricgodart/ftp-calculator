@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FTP Calculator · Calculateur FTP (demo)</title>
+<meta name="description" content="Calculateur FTP et zones de puissance, FR/EN, sans dépendance. FTP and power-zone calculator, FR/EN, no dependencies.">
+<link rel="stylesheet" href="src/ftp-calculator.css">
+<style>
+	body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #f6f5f2; color: #1d1d1b; }
+	@media (prefers-color-scheme: dark) { body { background: #17191e; color: #eceae4; } }
+	main { max-width: 900px; margin: 0 auto; padding: 32px 20px 64px; }
+	h1 { margin: 0 0 8px; font-size: 1.8rem; }
+	p { line-height: 1.6; }
+	.switch { display: flex; gap: 8px; margin: 20px 0; }
+	.switch button { font: inherit; padding: 6px 14px; border-radius: 999px; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; }
+	.switch button[aria-pressed="true"] { background: #ff6b4a; border-color: #ff6b4a; color: #17191e; }
+	footer { margin-top: 32px; font-size: .9rem; opacity: .75; }
+	a { color: #ff6b4a; }
+</style>
+</head>
+<body>
+<main>
+	<h1>FTP Calculator · Calculateur FTP</h1>
+	<p>Demo of the embeddable calculator. Démo du calculateur à intégrer. <a href="https://github.com/cedricgodart/ftp-calculator">GitHub</a></p>
+
+	<div class="switch">
+		<button type="button" data-lang="fr" aria-pressed="true">Français</button>
+		<button type="button" data-lang="en" aria-pressed="false">English</button>
+	</div>
+
+	<div id="calc" data-ftp-calculator data-lang="fr"></div>
+
+	<footer>
+		Live on / en ligne sur <a href="https://cedric.fm/spinning/ftp/">cedric.fm/spinning/ftp</a> · MIT License · Cédric Godart
+	</footer>
+</main>
+
+<script src="src/ftp-calculator.js"></script>
+<script>
+	// Language switch for the demo: replace the element and mount a fresh one
+	document.querySelectorAll(".switch button").forEach(function (b) {
+		b.addEventListener("click", function () {
+			var lang = b.dataset.lang, old = document.getElementById("calc");
+			var el = document.createElement("div");
+			el.id = "calc"; el.setAttribute("data-ftp-calculator", ""); el.setAttribute("data-lang", lang);
+			old.replaceWith(el);
+			FtpCalculator.mount(el);
+			document.documentElement.lang = lang;
+			document.querySelectorAll(".switch button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+		});
+	});
+</script>
+</body>
+</html>

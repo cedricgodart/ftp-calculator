@@ -1,0 +1,69 @@
+/*!
+ * FTP Calculator / Calculateur FTP · v1.0.0 · MIT License
+ * Every rule is scoped under .ftp-calc so it never leaks into the host site.
+ * Theme it by overriding the custom properties below on .ftp-calc (or a parent).
+ */
+.ftp-calc {
+	--fc-accent: #ff6b4a;
+	--fc-on-accent: #17191e;
+	--fc-bg: #ffffff;
+	--fc-field: #f7f6f3;
+	--fc-text: #1d1d1b;
+	--fc-muted: #6b6a65;
+	--fc-border: #e3e1db;
+	--fc-radius: 16px;
+	--fc-font: inherit;
+
+	box-sizing: border-box;
+	background: var(--fc-bg);
+	color: var(--fc-text);
+	border: 1px solid var(--fc-border);
+	border-radius: var(--fc-radius);
+	padding: clamp(1.1rem, 0.8rem + 1.5vw, 1.8rem);
+	font-family: var(--fc-font);
+	font-size: 1rem;
+	line-height: 1.5;
+}
+@media (prefers-color-scheme: dark) {
+	.ftp-calc:not([data-theme="light"]) {
+		--fc-bg: #1f2228;
+		--fc-field: #17191e;
+		--fc-text: #eceae4;
+		--fc-muted: #9b9a94;
+		--fc-border: #33363d;
+	}
+}
+.ftp-calc[data-theme="dark"] {
+	--fc-bg: #1f2228;
+	--fc-field: #17191e;
+	--fc-text: #eceae4;
+	--fc-muted: #9b9a94;
+	--fc-border: #33363d;
+}
+.ftp-calc *, .ftp-calc *::before, .ftp-calc *::after { box-sizing: inherit; }
+
+.ftp-calc .fc-tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 0 0 1.3rem; }
+.ftp-calc .fc-tab { border: 1px solid var(--fc-border); background: transparent; color: var(--fc-muted); border-radius: 999px; padding: 0.5rem 0.95rem; font: inherit; font-size: 0.9rem; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+.ftp-calc .fc-tab:hover { border-color: var(--fc-accent); color: var(--fc-text); }
+.ftp-calc .fc-tab[aria-selected="true"] { background: var(--fc-accent); border-color: var(--fc-accent); color: var(--fc-on-accent); font-weight: 600; }
+.ftp-calc .fc-panel[hidden] { display: none; }
+.ftp-calc .fc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.9rem; }
+.ftp-calc label { display: block; font-size: 0.82rem; color: var(--fc-muted); margin: 0 0 0.35rem; }
+.ftp-calc input, .ftp-calc select { width: 100%; margin: 0; padding: 0.65rem 0.8rem; border: 1px solid var(--fc-border); border-radius: 10px; font: inherit; background: var(--fc-field); color: var(--fc-text); }
+.ftp-calc input:focus, .ftp-calc select:focus { outline: 2px solid var(--fc-accent); outline-offset: 1px; }
+.ftp-calc .fc-hint { font-size: 0.85rem; color: var(--fc-muted); margin: 0.8rem 0 0; line-height: 1.5; }
+.ftp-calc .fc-btn { margin-top: 0.9rem; border: 1px solid var(--fc-accent); background: transparent; color: var(--fc-accent); border-radius: 10px; padding: 0.6rem 1rem; font: inherit; font-size: 0.92rem; cursor: pointer; }
+.ftp-calc .fc-btn:hover { background: color-mix(in srgb, var(--fc-accent) 14%, transparent); }
+.ftp-calc .fc-result { margin-top: 1.4rem; padding: 1.1rem 1.2rem; border-radius: 12px; background: var(--fc-field); border: 1px solid var(--fc-border); }
+.ftp-calc .fc-big { font-size: 2rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; }
+.ftp-calc .fc-big small { font-size: 1rem; font-weight: 500; color: var(--fc-muted); margin-left: 0.4rem; }
+.ftp-calc .fc-scroll { overflow-x: auto; }
+.ftp-calc table { width: 100%; border-collapse: collapse; margin: 1rem 0 0; font-size: 0.92rem; }
+.ftp-calc th { text-align: left; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fc-muted); padding: 0.5rem; border-bottom: 1px solid var(--fc-border); }
+.ftp-calc td { padding: 0.65rem 0.5rem; border-bottom: 1px solid var(--fc-border); vertical-align: top; }
+.ftp-calc tr:last-child td { border-bottom: 0; }
+.ftp-calc .fc-z { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; white-space: nowrap; }
+.ftp-calc .fc-dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+.ftp-calc .fc-muted { color: var(--fc-muted); font-size: 0.86rem; }
+.ftp-calc .fc-num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (max-width: 700px) { .ftp-calc .fc-hide-sm { display: none; } }

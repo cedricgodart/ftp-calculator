@@ -1,0 +1,32 @@
+---
+/**
+ * FtpCalculator.astro: Astro / EmDash wrapper for the FTP calculator.
+ *
+ * Copy this folder's sibling files (../src/ftp-calculator.js and .css) next to it,
+ * or adjust the import paths below, then:
+ *
+ *   ---
+ *   import FtpCalculator from "../components/FtpCalculator.astro";
+ *   ---
+ *   <FtpCalculator lang="fr" />
+ *
+ * Props:
+ *   lang   "fr" | "en"             defaults to the page's <html lang>, then the browser
+ *   theme  "light" | "dark" | auto auto follows prefers-color-scheme
+ *   accent CSS colour              overrides --fc-accent
+ */
+import "../src/ftp-calculator.css";
+
+interface Props {
+	lang?: "fr" | "en";
+	theme?: "light" | "dark";
+	accent?: string;
+}
+const { lang, theme, accent } = Astro.props;
+---
+
+<div data-ftp-calculator data-lang={lang} data-theme={theme} style={accent ? `--fc-accent:${accent}` : undefined}></div>
+
+<script>
+	import "../src/ftp-calculator.js";
+</script>
